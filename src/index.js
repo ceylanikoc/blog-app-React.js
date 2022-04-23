@@ -28,6 +28,12 @@ const removeBlog = ({ id }) => (
     }
 )
 
+const editBlog = (id,updates) => ({
+    type: "EDIT_BLOG",
+    id,
+    updates
+})
+
 const blogsState = []
 
 const blogReducer = (state = blogsState,action) => {
@@ -40,7 +46,18 @@ const blogReducer = (state = blogsState,action) => {
         case "REMOVE_BLOG" :
             return state.filter(({ id }) => {
                 return id !== action.id
-            })   
+            })  
+        case "EDIT_BLOG" : 
+            return state.map((blog) => {
+                if(blog.id === action.id) {
+                    return {
+                        ...blog,
+                        ...action.updates
+                    }
+                } else {
+                    return blog
+                }
+            })  
         default :
             return state;
     }
@@ -71,8 +88,9 @@ const blog2 = store.dispatch(addBlog({title:"blog title 2", description:"descrip
 console.log(blog1.blog.id);
 
 
-store.dispatch(removeBlog({id: blog1.blog.id}))
 
+store.dispatch(removeBlog({id: blog1.blog.id}))
+store.dispatch(editBlog(blog2.blog.id,{title:'updated blog title', yenititle:"yeni ekledim editBlog ile", description:'updated blog description'}))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
