@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 
 export default class BlogForm extends Component {
- 
-    // bu forma özel olduğundan dolayı redux'ı bağlamadım.
-  state = {
-      title : '',
-      description : '',
-      error:""
-  }  
+  
+  constructor(props){
+      super(props)
+      // bu forma özel olduğundan dolayı redux'ı bağlamadım.
+      this.state = {
+        title : props.blog ? props.blog.title : '',
+        description :props.blog ? props.blog.description : '',
+        error:""
+    }  
+    console.log(props);
+  }
 
+ 
   onTitleChange = (e) => {
       const title = e.target.value;
       this.setState(() => ({
@@ -43,7 +48,7 @@ export default class BlogForm extends Component {
           <form onSubmit={this.onSubmit}>
               <div>
                   <input 
-                    placeholder="enter title" 
+                    placeholder={"enter title"} 
                     value={this.state.title}
                     onChange={this.onTitleChange}
                   />

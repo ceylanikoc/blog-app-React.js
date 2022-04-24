@@ -6,6 +6,7 @@ import BlogDetailsPage from '../components/BlogDetailsPage'
 import ContactPage from '../components/ContactPage'
 import NotFoundPage from '../components/NotFoundPage'
 import AddBlogPage from '../components/AddBlogPage'
+import EditBlogPage from '../components/EditBlogPage'
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
@@ -18,6 +19,7 @@ const AppRouter = () => {
                     <Route path="/" component={HomePage} exact/>
                     <Route path="/blogs" component={BlogListPage} exact/>
                     <Route path="/create" component={AddBlogPage}/>
+                    <Route path="/edit/:id" component={EditBlogPage}/>
                     <Route path="/blogs/:id" component={BlogDetailsPage} />
                     <Route path="/contact" component={ContactPage} />
                     <Route component={NotFoundPage} />
