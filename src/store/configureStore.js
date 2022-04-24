@@ -7,7 +7,8 @@ export default () => {
         combineReducers({
             blogs: blogReducer,
             auth: authReducer
-        })
+        }),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
     return store;
 }
