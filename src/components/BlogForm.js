@@ -6,10 +6,10 @@ export default class BlogForm extends Component {
   state = {
       title : '',
       description : '',
+      error:""
   }  
 
   onTitleChange = (e) => {
-      e.preventDefault();
       const title = e.target.value;
       this.setState(() => ({
           title
@@ -17,14 +17,30 @@ export default class BlogForm extends Component {
   }
 
   onDescriptionChange = (e) => {
-      e.preventDefault();
       const description = e.target.value;
       this.setState(() => ({description}))
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    // burada title ve description bilgilerini girmezse.
+    if(!this.state.title || !this.state.description ) {
+        this.setState({error:"Lütfen tüm alanları doldurunuz."})
+    } else {
+        this.setState({error:''});
+        this.props.onSubmit({
+            title: this.state.title,
+            description:this.state.description,
+            dateAdded : Date.now(),
+        })
+    }
   }
   render() {
     return (
       <div>
-          <form>
+          {this.state.error && <p>{this.state.error}</p>}
+          <form onSubmit={this.onSubmit}>
               <div>
                   <input 
                     placeholder="enter title" 
@@ -42,7 +58,7 @@ export default class BlogForm extends Component {
                   </textarea>
               </div>
               <div>
-                  <button>Save Changes</button>
+                  <button type="submit">Save Changes</button>
               </div>
           </form>
 
