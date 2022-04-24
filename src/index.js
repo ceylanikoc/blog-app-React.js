@@ -19,6 +19,8 @@ store.subscribe(() => {
 const blog1 = store.dispatch(addBlog({title:"blog title 1", description:"description blog 1"}))
 const blog2 = store.dispatch(addBlog({title:"blog title 2", description:"description blog 2", dateAdded: Date.now()}))
 store.dispatch(addBlog({title:"blog title 3", description:"description blog 3", dateAdded: Date.now()}))
+store.dispatch(addBlog({title:"blog title 4", description:"description blog 4", dateAdded: Date.now()}))
+store.dispatch(addBlog({title:"blog title 5", description:"description blog 5", dateAdded: Date.now()}))
 
 console.log(blog1.blog.id);
 
