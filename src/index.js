@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import "./App.css";
 import configureStore from './store/configureStore'
 import { addBlog,removeBlog,editBlog } from './actions/blogs'
+import './firebase/firebaseConfig'
 
 
 
