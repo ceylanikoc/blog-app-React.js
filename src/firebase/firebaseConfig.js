@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set,update } from "firebase/database";
 
 
 
@@ -39,3 +39,34 @@ const firebaseConfig = {
         surname: "Koç"
     }
   })
+
+//   önceki bilgiler gider çünkü roota gönderiyoruz set(ref(database)) diyerek root kaydını referans olarak aldığından
+ // set(ref(database), ("yeni kayıt"))
+
+ //   önceki bilgiler gider çünkü roota gönderiyoruz set(ref(database)) diyerek root kaydını referans olarak aldığından
+//  set(ref(database),{
+//      title:"blog title new"
+//  })
+
+
+// veri güncelleme
+// update(ref(database),{
+//     title:"new blog title"
+// })
+
+// update(ref(database),{
+//     author : {
+//         name:"ceylani edit",
+//         surname: "Koç"
+//     }
+// })
+
+// burada author dizinsindeki sadece name i değiştirdik, ve surname kaldı.
+
+// update(ref(database,'author/'),{
+//     name:"sadık"
+// })
+
+// burada tags ekledik
+// set(ref(database,"tags"),["react","angular","javascript"])
+// set(ref(database,"tags"),["react","angular","javascript update"])
