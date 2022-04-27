@@ -38,7 +38,21 @@ const firebaseConfig = {
         name: "Ceylani",
         surname: "Koç"
     }
+  }).then(()=> {
+    console.log("kayıt eklendi");
+    set(ref(database,"tags"),["react","angular","javascript"])
+    .then(() => {
+        console.log('etiketler eklendi.');
+    })
+    .catch((e) => {
+        console.log("hata etiket ekleme",e);
+    })
   })
+  .catch((e) => {
+      console.log("hata", e);
+  })
+
+  console.log('uygulama çalıştı');
 
 //   önceki bilgiler gider çünkü roota gönderiyoruz set(ref(database)) diyerek root kaydını referans olarak aldığından
  // set(ref(database), ("yeni kayıt"))
