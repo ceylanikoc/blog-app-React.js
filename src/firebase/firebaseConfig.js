@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set,update } from "firebase/database";
+import { getDatabase, ref, remove, set,update } from "firebase/database";
 
 
 
@@ -53,6 +53,35 @@ const firebaseConfig = {
   })
 
   console.log('uygulama çalıştı');
+  
+
+  remove(ref(database,"title"))
+  .then(() => {
+      console.log("title silindi");
+  })
+  .catch((e) => {
+      console.log('Removing Data Error',e);
+  })
+
+  remove(ref(database,"author/name"))
+  .then(() => {
+      console.log("author node in name deleted");
+  })
+  .catch((e) => {
+      console.log('author node in name silinirken hata oluştur', e);
+  })
+
+// not belirtilmediğinde kayıdın tamamını silder
+//   remove(ref(database))
+//   .then(() => {
+//       console.log('Kayıtların tamamı silindi');
+//   })
+//   .catch((e) => {
+//       console.log('tüm kayıtlar silinirken hata oluştu:', e);
+//   })
+
+// remove işleminin alternatifi set ederek database null gönderip siliyoruz.
+//set(ref(database),null)
 
 //   önceki bilgiler gider çünkü roota gönderiyoruz set(ref(database)) diyerek root kaydını referans olarak aldığından
  // set(ref(database), ("yeni kayıt"))
