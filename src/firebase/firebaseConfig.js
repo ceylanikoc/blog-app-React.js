@@ -53,23 +53,35 @@ const firebaseConfig = {
   })
 
   console.log('uygulama çalıştı');
+
+//  update methodu
+
+update(ref(database),{
+    title:"update title references",
+    description:"updated description with firebase update method",
+    // author : {
+    //     name:"just name references updates but surname value değer atanmadığından silindi"
+    // }
+    "author/name" :"konumlanarak yapıldı just name references updates but surname value değeri silinmedi",
+    imageUrl : "update methodu kullanarak veri ekledik "
+})
   
 
-  remove(ref(database,"title"))
-  .then(() => {
-      console.log("title silindi");
-  })
-  .catch((e) => {
-      console.log('Removing Data Error',e);
-  })
+//   remove(ref(database,"title"))
+//   .then(() => {
+//       console.log("title silindi");
+//   })
+//   .catch((e) => {
+//       console.log('Removing Data Error',e);
+//   })
 
-  remove(ref(database,"author/name"))
-  .then(() => {
-      console.log("author node in name deleted");
-  })
-  .catch((e) => {
-      console.log('author node in name silinirken hata oluştur', e);
-  })
+//   remove(ref(database,"author/name"))
+//   .then(() => {
+//       console.log("author node in name deleted");
+//   })
+//   .catch((e) => {
+//       console.log('author node in name silinirken hata oluştur', e);
+//   })
 
 // not belirtilmediğinde kayıdın tamamını silder
 //   remove(ref(database))
@@ -113,3 +125,5 @@ const firebaseConfig = {
 // burada tags ekledik
 // set(ref(database,"tags"),["react","angular","javascript"])
 // set(ref(database,"tags"),["react","angular","javascript update"])
+
+
