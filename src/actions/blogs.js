@@ -1,5 +1,5 @@
 // import { v4 as uuid } from 'uuid';
-import { push, ref, set, onValue,get } from "firebase/database";
+import { push, ref, set, onValue,get, remove, update } from "firebase/database";
 import database from "../firebase/firebaseConfig";
 
 // ACTION CREATOR
@@ -34,11 +34,27 @@ export const removeBlog = ({ id }) => ({
   id: id,
 });
 
+export const removeBlogFromDatabase = ({id}) => {
+    return (dispatch) => {
+        return remove(ref(database,`blogs/${id}`)).then(() => {
+            dispatch(removeBlog({id}))
+        })
+    }
+}
+
 export const editBlog = (id, updates) => ({
   type: "EDIT_BLOG",
   id,
   updates,
 });
+
+export const editBlogFromDatabase = (id,uptades) => {
+    return(dispatch) => {
+        return update(ref(database,`blogs/${id}`),uptades).then(() => {
+            dispatch(editBlog(id,uptades))
+        })
+    }
+}
 
 export const setBlogs = (blogs) => ({
   type: "SET_BLOGS",
