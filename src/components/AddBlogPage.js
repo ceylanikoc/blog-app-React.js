@@ -1,14 +1,14 @@
 import React from 'react'
 import BlogForm from './BlogForm'
 import {connect} from 'react-redux'
-import {addBlog} from '../actions/blogs'
+import {addBlogToDatabase} from '../actions/blogs'
 
 const AddBlogPage = (props) => {
   return (
     <div>
         <h1>Add Blog</h1>
         <BlogForm onSubmit= {(blog) =>{
-            props.dispatch(addBlog(blog));
+            props.dispatch(addBlogToDatabase(blog));
             // route objesi içersinde push metodu iel yönlendirme;
             props.history.push('/blogs')
         }}/>
