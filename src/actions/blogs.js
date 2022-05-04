@@ -75,3 +75,8 @@ export const getBlogsFromDatabase = () => {
     });
   };
 };
+
+export const clearBlogs = () => ({
+    type: "CLEAR_BLOGS",
+  });
+  

@@ -5,8 +5,9 @@ import AppRouter , {history} from './routers/AppRouter'
 import reportWebVitals from './reportWebVitals';
 import "./App.css";
 import configureStore from './store/configureStore'
-import { addBlog,removeBlog,editBlog,getBlogsFromDatabase } from './actions/blogs'
+import { addBlog,removeBlog,editBlog,getBlogsFromDatabase, clearBlogs } from './actions/blogs'
 import {onAuthStateChanged,auth} from './firebase/firebaseConfig'
+import {loginAction, logoutAction} from './actions/auth'
 
 
 
@@ -51,7 +52,8 @@ const RenderApp = () => {
 onAuthStateChanged(auth,(user) => {
     if(user){
         const uid = user.uid;
-        console.log('kullanıcı giriş yaptı.',user);
+        store.dispatch(loginAction(uid))
+        console.log('kullanıcı giriş yaptı.',user,uid);
         store.dispatch(getBlogsFromDatabase()).then(() => {
             RenderApp();
             if(history.location.pathname === '/') {
@@ -61,6 +63,8 @@ onAuthStateChanged(auth,(user) => {
         
     } else {
         console.log("kullanıcı çıkış yaptı.");
+        store.dispatch(logoutAction())
+        store.dispatch(clearBlogs())
         history.push('/');
         RenderApp();
     }
