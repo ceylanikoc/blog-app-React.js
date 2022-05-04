@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import AppRouter from './routers/AppRouter'
+import AppRouter , {history} from './routers/AppRouter'
 import reportWebVitals from './reportWebVitals';
 import "./App.css";
 import configureStore from './store/configureStore'
@@ -18,14 +18,6 @@ const result = (
     </Provider>
 )
 
-onAuthStateChanged(auth,(user) => {
-    if(user){
-        const uid = user.uid;
-        console.log('kullanıcı giriş yaptı.',user);
-    } else {
-        console.log("kullanıcı çıkış yaptı.");
-    }
-})
 
 
 // statik data ile çalışma 
@@ -45,12 +37,35 @@ onAuthStateChanged(auth,(user) => {
 // store.dispatch(editBlog(blog2.blog.id,{title:'updated blog title', yenititle:"yeni ekledim editBlog ile", description:'updated blog description'}))
 
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<p>Loading...</p>);
-store.dispatch(getBlogsFromDatabase()).then(() => {
-    root.render(result);
+
+let isRendered = false;
+const RenderApp = () => {
+    if(!isRendered) {
+        root.render(result);
+        isRendered = true;
+    }
+}
+
+onAuthStateChanged(auth,(user) => {
+    if(user){
+        const uid = user.uid;
+        console.log('kullanıcı giriş yaptı.',user);
+        store.dispatch(getBlogsFromDatabase()).then(() => {
+            RenderApp();
+            if(history.location.pathname === '/') {
+                history.push('/blogs')
+            }
+        })
+        
+    } else {
+        console.log("kullanıcı çıkış yaptı.");
+        history.push('/');
+        RenderApp();
+    }
 })
+
 
 
 
