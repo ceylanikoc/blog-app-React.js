@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import AppRouter , {history} from './routers/AppRouter'
 import reportWebVitals from './reportWebVitals';
-import "./App.css";
+import "./styles/main.scss";
 import configureStore from './store/configureStore'
 import { addBlog,removeBlog,editBlog,getBlogsFromDatabase, clearBlogs } from './actions/blogs'
 import {onAuthStateChanged,auth} from './firebase/firebaseConfig'
