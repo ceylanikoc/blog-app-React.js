@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import "./App.css";
 import configureStore from './store/configureStore'
 import { addBlog,removeBlog,editBlog,getBlogsFromDatabase } from './actions/blogs'
-import './firebase/firebaseConfig'
+import {onAuthStateChanged,auth} from './firebase/firebaseConfig'
 
 
 
@@ -17,6 +17,15 @@ const result = (
         <AppRouter />
     </Provider>
 )
+
+onAuthStateChanged(auth,(user) => {
+    if(user){
+        const uid = user.uid;
+        console.log('kullanıcı giriş yaptı.',user);
+    } else {
+        console.log("kullanıcı çıkış yaptı.");
+    }
+})
 
 
 // statik data ile çalışma 
@@ -42,6 +51,7 @@ root.render(<p>Loading...</p>);
 store.dispatch(getBlogsFromDatabase()).then(() => {
     root.render(result);
 })
+
 
 
 reportWebVitals();
