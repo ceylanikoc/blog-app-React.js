@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## App Detail
 
-React, React-Redux , Redux, React-router
+React, React-Redux , Redux, React-router, Google Firebase Database, Firebase Authentication
 
 ## Available Scripts
 
