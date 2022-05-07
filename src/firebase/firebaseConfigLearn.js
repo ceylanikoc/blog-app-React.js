@@ -13,6 +13,7 @@ import { getDatabase, ref, remove, set, update, onValue, get, off, push, onChild
 // Your web app's Firebase configuration
 
 
+
 const firebaseConfig = {
 
     apiKey: "AIzaSyAj1wZv6ulIWXOK11JU_6LMpMs5rCATAg8",
