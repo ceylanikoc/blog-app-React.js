@@ -5,10 +5,10 @@ import {logout} from '../actions/auth'
 const Header = () => {
     return (
         <header>
-            <h1>Blog App</h1>
+            <h1 class="text-center color-primary">Blog App</h1>
             <NavLink to="/blogs" activeClassName="active">Blogs</NavLink>
             <NavLink to="/create" activeClassName="active">Create</NavLink>
-            <button onClick={logout}>Logout</button>
+            <button className="btn btn-secondary" onClick={logout}>Logout</button>
         </header>
     )
 }
