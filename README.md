@@ -8,7 +8,7 @@ React, React-Redux , Redux, React-router, Google Firebase Database, Firebase Aut
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can Run:
 
 ### `npm start`
 
